@@ -2,9 +2,19 @@
 
 @charset "UTF-8";
 
-@import 'bootstrap';
-
 @import 'color';
 @import 'main';
 @import 'header';
 
+// dump symfony
+pre.sf-dump{
+  position:fixed !important;
+  bottom: 350px;
+  left: 150px;
+  right: 150px;
+}
+
+.logo-default{
+  margin: 5px 0 0 0 !important;
+  max-height: 35px;
+}
