@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+    <div class="container" style="margin-bottom:20px; margin-top:20px;max-width:1200px">
+        <div class="row">
+
+
+    {% for playlist in playlists %}
+        <div class="col-sm-12 col-xs-12 col-md-4 col-lg-3">
+            <div class="thumbnail bootsnipp-thumb">
+                <div>
+                    <p class="pull-right view-counts hidden-md">
+                        <a href="http://bootsnipp.com/snippets/33z1D" class="tip" data-toggle="tooltip" title="" data-original-title="Viewed">{{ playlist.tracks.total }} <i class="fa fa-music"></i></a>
+                    </p>
+                    <p class="lead snipp-title">
+                        <a href="{{ path('playlist', {"owner": playlist.owner.id, "playlist": playlist.id}) }}">{{ playlist.name }}</a>
+                    </p>
+
+                </div>
+                <div class="caption">
+                    {%  if playlist.images[0] is defined %}
+                        <a href="{{ path('playlist', {"owner": playlist.owner.id, "playlist": playlist.id}) }}"><img src="{{ playlist.images[0].url }}" width="100%" /></a>
+                    {% else %}
+                        <a href="{{ path('playlist', {"owner": playlist.owner.id, "playlist": playlist.id}) }}"> <img src="http://lorempixel.com/600/600/" width="100%" /></a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+        </div>
+    </div>
+
+
+{% endblock %}

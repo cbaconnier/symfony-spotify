@@ -1,6 +1,11 @@
-//@import '../../../bower_components/bootstrap-sass-official/assets/stylesheets/_bootstrap';
 
 @charset "UTF-8";
+
+//@import '../../../bower_components/bootstrap-sass-official/assets/stylesheets/_bootstrap';
+@import '../../../bower_components/components-font-awesome/scss/font-awesome';
+
+
+
 
 @import 'color';
 @import 'main';
@@ -17,4 +22,33 @@ pre.sf-dump{
 .logo-default{
   margin: 5px 0 0 0 !important;
   max-height: 35px;
+}
+.snipp-title{
+  font-size: 14px;
+  padding-top: 4px;
+  width: auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}
+
+p{
+  margin: 5px;
+}
+
+.view-counts {
+  margin-right: 10px;
+}
+
+.pull-right {
+  float: right;
+}
+.pull-right {
+  float: right!important;
+}
+
+.view-counts a {
+  text-decoration: none;
+  color: #000;
 }

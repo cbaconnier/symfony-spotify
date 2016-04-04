@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use Monolog\Logger;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -54,15 +55,15 @@ class DefaultController extends Controller
         $spotify->requestAccessToken($request->query->get('code'));
         $accessToken = $spotify->getAccessToken();
 
-        // Set the access token on the API wrapper
-        $api->setAccessToken($accessToken);
-
+        // stock the token in a session
         $session = new Session();
         $session->set('accessToken', $accessToken);
 
         return $this->redirectToRoute("homepage");
 
     }
+
+
 
     /**
      * @Route("/", name="homepage")
@@ -74,8 +75,9 @@ class DefaultController extends Controller
 
         $api = new SpotifyWebAPI\SpotifyWebAPI();
         $api->setAccessToken($session->get('accessToken'));
-        $track = $api->getTrack('7EjyzZcbLxW7PaaLua9Ksb');
-        $track = $api->currentUserFollows('user', 'spotify');
+        //$track = $api->getTrack('7EjyzZcbLxW7PaaLua9Ksb');
+        //$track = $api->currentUserFollows('user', 'spotify');
+        $track = $api->getMyPlaylists();
 
         // replace this example code with whatever you need
         return $this->render('default/index.html.twig', array(

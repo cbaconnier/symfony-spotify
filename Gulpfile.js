@@ -84,6 +84,11 @@ gulp.task('js', function() {
 });
 
 
+gulp.task('fonts', function() {
+    return gulp.src(path.bower_components + '/components-font-awesome/fonts/**.*')
+        .pipe(gulp.dest('./web/fonts'));
+});
+
 
 gulp.task('watch', function () {
     var onChange = function (event) {
