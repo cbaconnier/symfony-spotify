@@ -12,12 +12,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
+use SpotifyWebAPI\Session as SpotifySession;
 use SpotifyWebAPI\SpotifyWebAPI;
 use Symfony\Component\HttpFoundation\Session\Session;
 
+use AppBundle\Controller\TokensController;
 
 
-class ArtistsController extends Controller
+class ArtistsController extends Controller implements TokensController
 {
 
 
@@ -27,11 +29,26 @@ class ArtistsController extends Controller
     public function playlistsAction()
     {
         $session = new Session();
-        if (!$session->get('accessToken')) return $this->redirectToRoute("signin");
+//        if (!$session->get('accessToken')) return $this->redirectToRoute("signin");
+//
+//        //refresh the token
+//        if($session->get('tokenExpiration') >= time()){
+//            $spotify = new SpotifySession(
+//                $this->getParameter('client_id'),
+//                $this->getParameter('secret_id'),
+//                $this->getParameter('callbackUrl')
+//            );
+//            $spotify->refreshAccessToken($session->get('refreshToken'));
+//            $session->set('accessToken', $spotify->getAccessToken());
+//            $session->set('refreshToken', $spotify->getRefreshToken());
+//            $session->set('tokenExpiration', $spotify->getTokenExpiration());
+//        }
 
 
+        //specify the token to the api
         $api = new SpotifyWebAPI();
         $api->setAccessToken($session->get('accessToken'));
+
 
         $limit = 50;
         $artists = null;
@@ -60,9 +77,23 @@ class ArtistsController extends Controller
     public function albumsAction($artist)
     {
         $session = new Session();
-        if (!$session->get('accessToken')) return $this->redirectToRoute("signin");
+//        if (!$session->get('accessToken')) return $this->redirectToRoute("signin");
+//
+//        //refresh the token
+//        if($session->get('tokenExpiration') >= time()){
+//            $spotify = new SpotifySession(
+//                $this->getParameter('client_id'),
+//                $this->getParameter('secret_id'),
+//                $this->getParameter('callbackUrl')
+//            );
+//            $spotify->refreshAccessToken($session->get('refreshToken'));
+//            $session->set('accessToken', $spotify->getAccessToken());
+//            $session->set('refreshToken', $spotify->getRefreshToken());
+//            $session->set('tokenExpiration', $spotify->getTokenExpiration());
+//        }
 
 
+        //specify the token to the api
         $api = new SpotifyWebAPI();
         $api->setAccessToken($session->get('accessToken'));
 
@@ -95,9 +126,23 @@ class ArtistsController extends Controller
     public function albumAction($artist, $album)
     {
         $session = new Session();
-        if (!$session->get('accessToken')) return $this->redirectToRoute("signin");
-
-        $api = new SpotifyWebAPI();
+//        if (!$session->get('accessToken')) return $this->redirectToRoute("signin");
+//
+//        //refresh the token
+//        if($session->get('tokenExpiration') >= time()){
+//            $spotify = new SpotifySession(
+//                $this->getParameter('client_id'),
+//                $this->getParameter('secret_id'),
+//                $this->getParameter('callbackUrl')
+//            );
+//            $spotify->refreshAccessToken($session->get('refreshToken'));
+//            $session->set('accessToken', $spotify->getAccessToken());
+//            $session->set('refreshToken', $spotify->getRefreshToken());
+//            $session->set('tokenExpiration', $spotify->getTokenExpiration());
+//        }
+//
+//        //specify the token to the api
+//        $api = new SpotifyWebAPI();
         $api->setAccessToken($session->get('accessToken'));
 
 

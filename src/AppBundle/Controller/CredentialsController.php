@@ -54,11 +54,13 @@ class CredentialsController extends Controller
 
         // Request a access token using the code from Spotify
         $spotify->requestAccessToken($request->query->get('code'));
-        $accessToken = $spotify->getAccessToken();
+
 
         // stock the token in a session
         $session = new Session();
-        $session->set('accessToken', $accessToken);
+        $session->set('accessToken', $spotify->getAccessToken());
+        $session->set('refreshToken', $spotify->getRefreshToken());
+        $session->set('tokenExpiration', $spotify->getTokenExpiration());
 
         return $this->redirectToRoute("homepage");
 

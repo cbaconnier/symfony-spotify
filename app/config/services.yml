@@ -7,3 +7,9 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+
+    app.action_listener:
+        class: AppBundle\EventListener\TokensListener
+        arguments: ['%client_id%','%secret_id%','%callbackUrl%']
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }
