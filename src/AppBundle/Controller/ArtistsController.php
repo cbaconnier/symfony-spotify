@@ -142,7 +142,7 @@ class ArtistsController extends Controller implements TokensController
 //        }
 //
 //        //specify the token to the api
-//        $api = new SpotifyWebAPI();
+        $api = new SpotifyWebAPI();
         $api->setAccessToken($session->get('accessToken'));
 
 

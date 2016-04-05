@@ -50,7 +50,7 @@ class CredentialsController extends Controller
             $this->getParameter('secret_id'),
             $this->getParameter('callbackUrl')
         );
-        $api = new SpotifyWebAPI\SpotifyWebAPI();
+
 
         // Request a access token using the code from Spotify
         $spotify->requestAccessToken($request->query->get('code'));
@@ -62,7 +62,7 @@ class CredentialsController extends Controller
         $session->set('refreshToken', $spotify->getRefreshToken());
         $session->set('tokenExpiration', $spotify->getTokenExpiration());
 
-        return $this->redirectToRoute("homepage");
+        return $this->redirectToRoute("playlists");
 
     }
 

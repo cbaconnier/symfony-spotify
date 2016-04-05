@@ -56,7 +56,7 @@ class TokensListener
                 $spotify->refreshAccessToken($session->get('refreshToken'));
 
                 $session->set('accessToken', $spotify->getAccessToken());
-                $session->set('refreshToken', $spotify->getRefreshToken());
+                //$session->set('refreshToken', $spotify->getRefreshToken());
                 $session->set('tokenExpiration', $spotify->getTokenExpiration());
             }
         }
