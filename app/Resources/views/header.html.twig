@@ -11,25 +11,32 @@
             </div>
             <!-- END LOGO -->
             <!-- BEGIN MEGA MENU -->
+
+            {% set page = app.request.attributes.get('_route') %}
+
             <div class="hor-menu   hidden-sm hidden-xs">
                 <ul class="nav navbar-nav">
 
-                    <li class="classic-menu-dropdown active">
-                        <a href="/"> Active
-                            <span class="selected"> </span>
+                    <li class="classic-menu {% if (page in ['playlists', 'playlist']) %}active{% endif %}">
+                        <a href="/playlists"> Playlists
+                            <span class="{% if (page in ['playlists', 'playlist']) %}selected{% endif %}"> </span>
                         </a>
                     </li>
 
-                    <li class="classic-menu-dropdown">
+                    <li class="classic-menu {% if (page in ['artists', 'albums', 'album']) %}active{% endif %}">
+                        <a href="/artists"> Followed artists
+                            <span class="{% if (page in ['artists', 'albums', 'album']) %}selected{% endif %}"> </span>
+                        </a>
+                    </li>
+
+
+                    <li class="classic-menu">
                         <a href="/"> Active
                             <span class=""> </span>
                         </a>
                     </li>
-                    <li class="classic-menu-dropdown">
-                        <a href="/"> Active
-                            <span class=""> </span>
-                        </a>
-                    </li>
+
+
                 </ul>
             </div>
             <!-- END MEGA MENU -->

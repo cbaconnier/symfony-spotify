@@ -23,7 +23,7 @@
                     {%  if playlist.images[0] is defined %}
                         <a href="{{ path('playlist', {"owner": playlist.owner.id, "playlist": playlist.id}) }}"><img src="{{ playlist.images[0].url }}" width="100%" /></a>
                     {% else %}
-                        <a href="{{ path('playlist', {"owner": playlist.owner.id, "playlist": playlist.id}) }}"> <img src="http://lorempixel.com/600/600/" width="100%" /></a>
+                        <a href="{{ path('playlist', {"owner": playlist.owner.id, "playlist": playlist.id}) }}"> <img src="http://placehold.it/600x600" width="100%" /></a>
                     {% endif %}
                 </div>
             </div>

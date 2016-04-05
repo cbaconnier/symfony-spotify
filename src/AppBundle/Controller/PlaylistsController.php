@@ -39,7 +39,7 @@ class PlaylistsController extends Controller
         $playlists = $api->getMyPlaylists(['limit' => $limit]);
 
         // Spotify imposes a limit of 50, we need to fetch all the playlists
-        // Alsom the api doesn't provide a method to fetch the "next url", so I did manually.
+        // Also the api doesn't provide a method to fetch the "next url", so I did manually.
         while($playlists->next){
             $offset += $limit;
             $playlists_tmp = $api->getMyPlaylists(['limit' => $limit, 'offset' => $offset]);
@@ -57,7 +57,6 @@ class PlaylistsController extends Controller
 
     /**
      * @Route("/playlists/{owner}/{playlist}", name="playlist"),
-     *     defaults={"owner"="logitux", "playlist"="1H13g4Mda3mrtGgwhxjPkA"}
      */
     public function playlistAction($owner, $playlist){
         $session = new Session();
@@ -67,13 +66,29 @@ class PlaylistsController extends Controller
         $api->setAccessToken($session->get('accessToken'));
 
 
+        $limit = 100;
+        $offset = 0;
+        $playlist_arr = null;
 
-        $playlist = $api->getUserPlaylist($owner, $playlist);
+        $playlist_tmp = $api->getUserPlaylist($owner, $playlist);
+        $playlist_arr = $api->getUserPlaylistTracks($owner, $playlist);
+
+        $playlist_arr->name = $playlist_tmp->name;
+        $playlist_arr->description = $playlist_tmp->description;
+
+        // Spotify imposes a limit of 100, we need to fetch all the playlists
+        // Also the api doesn't provide a method to fetch the "next url", so I did manually.
+        while($playlist_arr->next){
+            $offset += $limit;
+            $playlist_tmp = $api->getUserPlaylistTracks($owner, $playlist, ['limit' => $limit, 'offset' => $offset]);
+            $playlist_arr->items = array_merge($playlist_arr->items, $playlist_tmp->items);
+            $playlist_arr->next = $playlist_tmp->next;
+        }
 
 
 
         return $this->render('playlists/playlist.html.twig', array(
-            'playlist' => $playlist
+            'playlist' => $playlist_arr
         ));
     }
 

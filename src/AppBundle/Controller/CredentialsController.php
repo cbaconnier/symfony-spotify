@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use SpotifyWebAPI;
 use Symfony\Component\HttpFoundation\Session\Session;
 
-class DefaultController extends Controller
+class CredentialsController extends Controller
 {
     /**
      * @Route("/signin", name="signin")
@@ -26,7 +26,8 @@ class DefaultController extends Controller
 
         $scopes = array(
             'playlist-read-private',
-            'user-read-private'
+            'user-read-private',
+            'user-follow-read'
         );
 
         $authorizeUrl = $spotify->getAuthorizeUrl(array(
