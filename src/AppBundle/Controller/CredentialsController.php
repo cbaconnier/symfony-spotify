@@ -9,7 +9,9 @@ use Symfony\Component\HttpFoundation\Request;
 use SpotifyWebAPI;
 use Symfony\Component\HttpFoundation\Session\Session;
 
-class CredentialsController extends Controller
+use AppBundle\Controller\TokensController;
+
+class CredentialsController extends Controller implements TokensController
 {
     /**
      * @Route("/signin", name="signin")

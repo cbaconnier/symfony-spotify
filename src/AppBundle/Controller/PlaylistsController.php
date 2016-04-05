@@ -15,9 +15,9 @@ use Symfony\Component\HttpFoundation\Request;
 use SpotifyWebAPI\SpotifyWebAPI;
 use Symfony\Component\HttpFoundation\Session\Session;
 
+use AppBundle\Controller\TokensController;
 
-
-class PlaylistsController extends Controller
+class PlaylistsController extends Controller implements TokensController
 {
 
 
