@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 use AppBundle\Controller\TokensController;
 
-class CredentialsController extends Controller implements TokensController
+class CredentialsController extends Controller
 {
     /**
      * @Route("/signin", name="signin")

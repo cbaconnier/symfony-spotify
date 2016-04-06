@@ -27,7 +27,6 @@ class PlaylistsController extends Controller implements TokensController
     public function playlistsAction()
     {
         $session = new Session();
-        if (!$session->get('accessToken')) return $this->redirectToRoute("signin");
 
         $api = new SpotifyWebAPI();
         $api->setAccessToken($session->get('accessToken'));
@@ -60,7 +59,6 @@ class PlaylistsController extends Controller implements TokensController
      */
     public function playlistAction($owner, $playlist){
         $session = new Session();
-        if (!$session->get('accessToken')) return $this->redirectToRoute("signin");
 
         $api = new SpotifyWebAPI();
         $api->setAccessToken($session->get('accessToken'));
@@ -84,8 +82,6 @@ class PlaylistsController extends Controller implements TokensController
             $playlist_arr->items = array_merge($playlist_arr->items, $playlist_tmp->items);
             $playlist_arr->next = $playlist_tmp->next;
         }
-
-
 
         return $this->render('playlists/playlist.html.twig', array(
             'playlist' => $playlist_arr

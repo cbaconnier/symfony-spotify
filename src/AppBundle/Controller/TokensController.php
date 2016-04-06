@@ -2,7 +2,4 @@
 
 namespace AppBundle\Controller;
 
-interface TokensController
-{
-
-}
+interface TokensController{}

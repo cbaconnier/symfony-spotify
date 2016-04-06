@@ -29,21 +29,6 @@ class ArtistsController extends Controller implements TokensController
     public function playlistsAction()
     {
         $session = new Session();
-//        if (!$session->get('accessToken')) return $this->redirectToRoute("signin");
-//
-//        //refresh the token
-//        if($session->get('tokenExpiration') >= time()){
-//            $spotify = new SpotifySession(
-//                $this->getParameter('client_id'),
-//                $this->getParameter('secret_id'),
-//                $this->getParameter('callbackUrl')
-//            );
-//            $spotify->refreshAccessToken($session->get('refreshToken'));
-//            $session->set('accessToken', $spotify->getAccessToken());
-//            $session->set('refreshToken', $spotify->getRefreshToken());
-//            $session->set('tokenExpiration', $spotify->getTokenExpiration());
-//        }
-
 
         //specify the token to the api
         $api = new SpotifyWebAPI();
@@ -71,89 +56,6 @@ class ArtistsController extends Controller implements TokensController
     }
 
 
-    /**
-     * @Route("/artists/{artist}", name="albums")
-     */
-    public function albumsAction($artist)
-    {
-        $session = new Session();
-//        if (!$session->get('accessToken')) return $this->redirectToRoute("signin");
-//
-//        //refresh the token
-//        if($session->get('tokenExpiration') >= time()){
-//            $spotify = new SpotifySession(
-//                $this->getParameter('client_id'),
-//                $this->getParameter('secret_id'),
-//                $this->getParameter('callbackUrl')
-//            );
-//            $spotify->refreshAccessToken($session->get('refreshToken'));
-//            $session->set('accessToken', $spotify->getAccessToken());
-//            $session->set('refreshToken', $spotify->getRefreshToken());
-//            $session->set('tokenExpiration', $spotify->getTokenExpiration());
-//        }
-
-
-        //specify the token to the api
-        $api = new SpotifyWebAPI();
-        $api->setAccessToken($session->get('accessToken'));
-
-        $limit = 50;
-        $offset = 0;
-        $albums = null;
-
-
-        $albums = $api->getArtistAlbums($artist, ['limit' => $limit]);
-        $albums->artistId = $artist;
-
-
-        // Spotify imposes a limit of 50, we need to fetch all the playlists
-        // Also the api doesn't provide a method to fetch the "next url", so I did manually.
-        if($albums->next) {
-            $offset += $limit;
-            $albums_tmp = $api->getArtistAlbums($artist, ['limit' => $limit, 'offset' => $offset]);
-            $albums->items = array_merge($albums->items, $albums_tmp->items);
-            $albums->next = $albums_tmp->next;
-        }
-
-        return $this->render('artists/albums.html.twig', array(
-            'albums' => $albums
-        ));
-    }
-
-    /**
-     * @Route("/artists/{artist}/{album}", name="album")
-     */
-    public function albumAction($artist, $album)
-    {
-        $session = new Session();
-//        if (!$session->get('accessToken')) return $this->redirectToRoute("signin");
-//
-//        //refresh the token
-//        if($session->get('tokenExpiration') >= time()){
-//            $spotify = new SpotifySession(
-//                $this->getParameter('client_id'),
-//                $this->getParameter('secret_id'),
-//                $this->getParameter('callbackUrl')
-//            );
-//            $spotify->refreshAccessToken($session->get('refreshToken'));
-//            $session->set('accessToken', $spotify->getAccessToken());
-//            $session->set('refreshToken', $spotify->getRefreshToken());
-//            $session->set('tokenExpiration', $spotify->getTokenExpiration());
-//        }
-//
-//        //specify the token to the api
-        $api = new SpotifyWebAPI();
-        $api->setAccessToken($session->get('accessToken'));
-
-
-        $album = $api->getAlbum($album);
-
-
-        return $this->render('artists/tracks.html.twig', array(
-            'album' => $album
-        ));
-
-    }
 
 
 
