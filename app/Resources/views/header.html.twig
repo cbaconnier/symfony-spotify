@@ -44,16 +44,17 @@
 
             <!-- BEGIN HEADER SEARCH BOX -->
             <!-- DOC: Apply "search-form-expanded" right after the "search-form" class to have half expanded search box -->
-            <form class="search-form search-form-expanded" action="" method="GET">
+
+            {{ form_start(form, {'action': path('tracks'), 'method': 'GET', 'attr':{'class': 'search-form search-form-expanded'}}) }}
                 <div class="input-group">
-                    <input name="query" class="form-control" type="text" placeholder="Search...">
+                    <input name="q" class="form-control" type="text" placeholder="Search...">
                         <span class="input-group-btn">
                             <a class="btn submit" href="javascript:;">
                                 <i class="icon-magnifier"></i>
                             </a>
                         </span>
                 </div>
-            </form>
+            {{ form_end(form) }}
             <!-- END HEADER SEARCH BOX -->
 
 
