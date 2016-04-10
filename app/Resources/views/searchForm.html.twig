@@ -1,0 +1,12 @@
+
+{{ form_start(form, {'action': path('search'), 'method': 'GET', 'attr':{'class': 'search-form search-form-expanded'}}) }}
+<div class="input-group ">
+    {{ form_widget(form.query, {'attr' : {'class': 'form-control', 'placeholder': 'Search...'}}) }}
+    <span class="input-group-btn">
+        <a class="btn submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    </span>
+
+</div>
+{{ form_end(form) }}
