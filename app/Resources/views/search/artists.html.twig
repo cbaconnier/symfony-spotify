@@ -1,0 +1,36 @@
+<div class="row">
+
+
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Albums</div>
+        <div class="panel-body">
+
+
+            {% for artist in artists %}
+        <div class="col-sm-12 col-xs-12 col-md-4 col-lg-3">
+            <div class="thumbnail bootsnipp-thumb">
+                <div>
+                    {#<p class="pull-right view-counts hidden-md">#}
+                    {#<a href="http://bootsnipp.com/snippets/33z1D" class="tip" data-toggle="tooltip" title="" data-original-title="Viewed">{{ playlist.tracks.total }} <i class="fa fa-music"></i></a>#}
+                    {#</p>#}
+                    <p class="lead snipp-title">
+                        <a href="{{ path('albums', {"artist": artist.id}) }}">{{ artist.name }}</a>
+                    </p>
+
+                </div>
+                <div class="caption">
+                    {%  if artist.images[0] is defined %}
+                        <a href="{{ path('albums', {"artist": artist.id}) }}"><img src="{{ artist.images[0].url }}" width="100%" /></a>
+                    {% else %}
+                        <a href="{{ path('albums', {"artist": artist.id}) }}"> <img src="http://placehold.it/600x600" width="100%" /></a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+            </div>
+        </div>
+
+</div>

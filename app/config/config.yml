@@ -9,8 +9,8 @@ imports:
 
 parameters:
     locale: en
-    client_id: "YOUR_SPOTIFY_CLIENT_ID"
-    secret_id: "YOUR_SPOTIFY_SECRET_ID"
+    client_id: "4bcc0c5bcbb9455da2fe6b65203b0b41"
+    secret_id: "13ae18fc1b284403a1894a48e19f758b"
     callbackUrl: "http://localhost:8000/login"
 
 framework:

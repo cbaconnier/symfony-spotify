@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Tracks</div>
+        <div class="panel-body">
+
+
+        <table class="table">
+
+            <tr>
+                <th>Track</th>
+                <th>Artist</th>
+                <th>Name</th>
+            </tr>
+
+            {% for track in tracks %}
+
+                {%  set artists = [] %}
+                {% for artist in track.artists %}
+                    {% set artists = artists|merge([artist.name]) %}
+                {% endfor %}
+
+
+                <tr>
+                    <td> {{ track.track_number }}</td>
+                    <td> {{ artists|join(' & ') }}</td>
+                    <td>{{ track.name }}</td>
+                </tr>
+            {% endfor %}
+
+        </table>
+
+
+    </div>
+    </div>
+</div>
