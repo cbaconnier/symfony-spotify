@@ -4,6 +4,7 @@ Symfony - Spotify
 ## Application demo
 
 Display playlists, followed artists, albums and tracks
+Use the Spotify credentials with token regeneration
 
 ### Installation
 
