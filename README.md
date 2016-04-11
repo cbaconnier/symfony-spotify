@@ -14,7 +14,7 @@ $ npm install
 $ gulp
 ```
 
-insert your spotify privates key in :
+insert your privates spotify keys in :
 ```
 app/config/config.yml
 ```
