@@ -1,4 +1,4 @@
-Symfony - Spotify
+Symfony - Spotify (Academic Work)
 ========================
 
 ## Application demo
